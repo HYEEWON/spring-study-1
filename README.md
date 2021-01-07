@@ -3,7 +3,7 @@
 * 추가적으로 내용 보충
 
 ## Contents
-* [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](#스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술)
+* [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](#스프링)
 # 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
 ## Spring Boot Basis
 ### 정적 컨텐츠
@@ -17,7 +17,7 @@
   * Model: 비지니스 로직 처리, 데이터 및 DB와 관련, 데이터 처리 및 변경 등
   * View: 화면과 관련, Controller에서 받은 Model의 결과를 이용해 화면을 제작 -> 화면을 웹 브라우저에 전달하여 출력되도록 함
   * Controller: 비지니스 로직 처리, Model에서 데이터를 받아 View에게 전달, View에서 받은 화면을 웹 서버에 전달
-  ** `Web Browser` -> 웹 실행 요청 -> `Web Server` -> `Controller` -> 모델 호출 또는 데이터 전달 -> `Model`(<->DB) -> 데이터로 만든 값 객체 -> `Controller` -> 전달 -> `View` -> 화면 -> `Controller` -> 전달 -> `Web Server` -> `Web Browser` 로 출력
+  * `Web Browser` -> 웹 실행 요청 -> `Web Server` -> `Controller` -> 모델 호출 또는 데이터 전달 -> `Model`(<->DB) -> 데이터로 만든 값 객체 -> `Controller` -> 전달 -> `View` -> 화면 -> `Controller` -> 전달 -> `Web Server` -> `Web Browser` 로 출력
 * 템플릿 엔진 처리 과정
   1. 웹 브라우저 요청(http://~//test)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
   2. 스프링에서 요청(test)과 관련된 컨트롤러가 Model로 값을 넘김
