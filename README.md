@@ -21,5 +21,5 @@
 * 템플릿 엔진 처리 과정
   1. 웹 브라우저 요청(http://~//test)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
   2. 스프링에서 요청(test)과 관련된 컨트롤러가 Model로 값을 넘김
-  3. `viewResolver`가 `resoures/templates/`에서 관련 html 파일(test.html)을 찾아 html을 변환(템플릿 처리)하여 웹브라우저에 반환
+  3. `viewResolver`가 `resoures/templates/`에서 관련 html 파일(test.html)을 찾아 변환(템플릿 처리)하여 웹브라우저에 반환
 ### API
