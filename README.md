@@ -20,6 +20,10 @@
   * `Web Browser` -> 웹 실행 요청 -> `Web Server` -> `Controller` -> 모델 호출 또는 데이터 전달 -> `Model`(<->DB) -> 데이터로 만든 값 객체 -> `Controller` -> 전달 -> `View` -> 화면 -> `Controller` -> 전달 -> `Web Server` -> `Web Browser` 로 출력
 * 템플릿 엔진 처리 과정
   1. 웹 브라우저 요청(http://~//test)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
-  2. 스프링에서 요청(test)과 관련된 컨트롤러가 Model로 값을 넘김
+  2. 스프링에서 요청(test)과 관련된 컨트롤러가 Model을 통해 값을 넘김
   3. `viewResolver`가 `resoures/templates/`에서 관련 html 파일(test.html)을 찾아 변환(템플릿 처리)하여 웹브라우저에 반환
 ### API
+  1. 웹 브라우저 요청(http://~//test)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
+  2. 스프링에서 요청(test)과 관련된 컨트롤러가 동작 수행
+  3. `@ResponseBody`가 있으면 HttpMessageConverter가 동작 -> 객체: `MappingJackson2HttpMessageConverter`, 문자(열): `StringHttpMessageConverter` 동작
+  4. 객체는 JSON, 문자(열)는 문자(열)로 변환하여 웹 브라우저에 반환
