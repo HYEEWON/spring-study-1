@@ -4,6 +4,7 @@
 
 ## Contents
 - [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](#---------------------------mvc--db------)
+  * [Spring Boot Basis](#spring-boot-basis)
 ## 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
 ### Spring Boot Basis
 #### 정적 컨텐츠
