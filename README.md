@@ -3,8 +3,8 @@
 * 추가적으로 내용 보충
 
 ## Contents
-- [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](#스프링-입문---코드로-배우는-스프링-부트-웹-mvc-db-접근-기술
-### Spring Boot Basis)
+- [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](#스프링-입문---코드로-배우는-스프링-부트-웹-mvc-db-접근-기술)
+### Spring Boot Basis
   * [Spring Boot Basis](#spring-boot-basis)
 ## 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
 ### Spring Boot Basis
