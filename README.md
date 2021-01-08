@@ -36,8 +36,11 @@
   * 클라이언트의 HTTP Accept 헤더와 서버의 컨트롤러의 반환 타입 정보를 조햅해 `HttpMessageConverter`가 선택됨
 ### 회원 관리 예제 - 백앤드 개발
   * 일반적인 웹 애플리케이션 계층 구조<br>
-    `컨트롤러` -> `서비스` -> `리포지토리` -> `DB`<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└>  └> `도메인` <┘ <br>
+```
+    컨트롤러 -> 서비스 -> 리포지토리 -> DB<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└>  └> 도메인 <┘ <br>
+```
+    * 컨트롤러: 웹 MVC의 컨트롤러
     * 서비스: 핵심 비지니스 로직
     * 리포지토리: 도메인 객체를 DB에 저장하고 관리
     * 도메인: 비지니스 도메인 객체, ex) 회원, 주문, 쿠폰 등 DB에 저장되고 관리됨
