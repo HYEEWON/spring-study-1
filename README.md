@@ -6,6 +6,11 @@
 - [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](#스프링-입문---코드로-배우는-스프링-부트-웹-mvc-db-접근-기술)
 
 ## 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
+```
+* Java 11
+* Spring boot
+* Thymeleaf
+```
 ### Spring Boot Basis
 #### 정적 컨텐츠
 1. 웹 브라우저 요청(http://~//test.html)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
@@ -26,7 +31,13 @@
 #### API
   1. 웹 브라우저 요청(http://~//test)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
   2. 스프링에서 요청(test)과 관련된 컨트롤러가 동작 수행
-  3. `@ResponseBody`가 있으면 HttpMessageConverter가 동작 -> 객체: `MappingJackson2HttpMessageConverter`, 문자(열): `StringHttpMessageConverter` 동작
-### 회원 관리 예제 - 백앤드 개발
-
+  3. `@ResponseBody`가 있으면 `HttpMessageConverter`가 동작 -> 객체: `MappingJackson2HttpMessageConverter`, 문자(열): `StringHttpMessageConverter` 동작
   4. 객체는 JSON, 문자(열)는 문자(열)로 변환하여 웹 브라우저에 반환
+  * 클라이언트의 HTTP Accept 헤더와 서버의 컨트롤러의 반환 타입 정보를 조햅해 `HttpMessageConverter`가 선택됨
+### 회원 관리 예제 - 백앤드 개발
+  * 일반적인 웹 애플리케이션 계층 구조
+    `컨트롤러` -> `서비스` -> `리포지토리` -> `DB`<br>
+             └>  └> `도메인` <┘ <br>
+    * 서비스: 핵심 비지니스 로직
+    * 리포지토리: 도메인 객체를 DB에 저장하고 관리
+    * 도메인: 비지니스 도메인 객체, ex) 회원, 주문, 쿠폰 등 DB에 저장되고 관리됨
