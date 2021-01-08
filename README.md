@@ -4,8 +4,7 @@
 
 ## Contents
 - [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](#스프링-입문---코드로-배우는-스프링-부트-웹-mvc-db-접근-기술)
-### Spring Boot Basis
-  * [Spring Boot Basis](#spring-boot-basis)
+
 ## 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
 ### Spring Boot Basis
 #### 정적 컨텐츠
@@ -28,4 +27,6 @@
   1. 웹 브라우저 요청(http://~//test)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
   2. 스프링에서 요청(test)과 관련된 컨트롤러가 동작 수행
   3. `@ResponseBody`가 있으면 HttpMessageConverter가 동작 -> 객체: `MappingJackson2HttpMessageConverter`, 문자(열): `StringHttpMessageConverter` 동작
+### 회원 관리 예제 - 백앤드 개발
+
   4. 객체는 JSON, 문자(열)는 문자(열)로 변환하여 웹 브라우저에 반환
