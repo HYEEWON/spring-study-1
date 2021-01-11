@@ -51,3 +51,43 @@
     * 순서의 의존성이 없도록 테스트가 끝날 때마다 데이터 클리어 필요 -> `@AfterEach`
     * 테스트 코드와 실제 코드에서 각각 객체 생성시 서로 다른 객체를 사용 -> `@BeforeEach`에서 `Dependency Injection(DI)`
   * 코드에서 `domain, repository, service, test`
+
+### 스프링 빈과 의존관계
+#### Dependency Injection(DI, 의존성 주입)
+* 의존관계를 외부에서 넣어주는 것
+* 단방향 의존성: `Controller` → `Service` -> `Repository`
+* DI를 하지 않을 경우
+  ```java
+  public class MemberService {
+      private final MemberRepository memberRepository = new MemoryMemberRepository();
+  }
+  ```
+  * 개발자가 객체를 직접 생성해 의존성 연결
+  * 단위 테스트가 어렵고, 결합도를 높이는 단점 존재
+* DI를 사용할 경우
+  ```java
+  public class MemberService {
+    private final MemberRepository memberRepository;
+
+    @Autowired //생성자
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+  }
+  ```
+  * 의존성 연결을 스프링이 함
+  * 생성자에 `@Autowired`가 있으면 객체 생성 시점에 스프링이 연관된 객체를 스프링 컨테이너에서 찾아서 넣어줌 -> 의존관계 부여
+  * 생성자가 1개면 `@Autowired` 생략 가능
+#### 스프링 빈
+* 스프링 컨테이너에 의해 만들어진 자바 객체
+* 스프링에 의해 생명주기 관리
+* (+) 스프링은 스프링 빈으로 등록된 객체만 관리 가능
+#### 스프링 빈 등록 방법: 컴포넌트 스캔(자동 의존관계 설정)
+* `@Component` 주석이 있으면 스프링 빈으로 자동 등록됨
+* `@Controller`, `@Service`, `@Repository`는 `@Component`를 포함하고 있어 스프링 빈으로 자동 등록
+* 과정
+  (1) `@SpringBootApplication` 안에는 `@ComponentScan`이 있는데, 어디부터 `@Component`를 찾을지 알려줌  
+  (2) `@ComponentScan`이 있는 클래스의 패키지부터 하위 패키지의 모든 클래스를 탐색  
+  (3) `@Component` 주석이 있는 클래스를 찾아 스프링 빈 등록
+* (+) 스프링은 스프링 컨테이너에 스프링 빈을 등록할 때, 기본으로 싱글톤 등록(= 유일하게 1개를 등록하여 공유) -> 같은 스프링 빈이면 모두 같은 인스턴스
+#### 스프링 빈 등록 방법: 자바 코드로 직접 등록
