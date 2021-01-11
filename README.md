@@ -78,6 +78,40 @@
   * 의존성 연결을 스프링이 함
   * 생성자에 `@Autowired`가 있으면 객체 생성 시점에 `스프링이 의존관계 부여` -> 스프링이 연관된 객체를 스프링 컨테이너에서 찾아서 넣어줌
   * 생성자가 1개면 `@Autowired` 생략 가능
+* 종류
+  * 필드 주입
+  ```java
+  @Controller
+  public class MemberController {
+    @Autowired private MemberService memberService;
+  }
+  ```
+  * setter 주입
+  ```java
+  @Controller
+  public class MemberController {
+    private MemberService memberService;
+
+    @Autowired
+    public void setMemberService(MemberService memberService) {
+        this.memberService = memberService;
+    }
+  }
+  ```
+    * public에 노출되어 중간에 문제가 될 가능성이 있음
+  * 생서자 주입: `권장`
+  ```java
+  @Controller
+  public class MemberController {
+    private MemberService memberService;
+
+    @Autowired // Dependency Injection
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+  }
+  ```
+    의존관계가 실행중에 동적으로 변하는 경우는 거의(아예) 없음
 #### 스프링 빈
 * 스프링 컨테이너에 의해 만들어진 자바 객체
 * 스프링에 의해 생명주기 관리
@@ -92,3 +126,21 @@
   (3) `@Component` 주석이 있는 클래스를 찾아 스프링 빈 등록
 * (+) 스프링은 스프링 컨테이너에 스프링 빈을 등록할 때, 기본으로 싱글톤 등록(= 유일하게 1개를 등록하여 공유) -> 같은 스프링 빈이면 모두 같은 인스턴스
 #### 스프링 빈 등록 방법: 자바 코드로 직접 등록
+* `Java class` 파일을 생성해 스프링 빈 등록
+```java
+@Configuration
+public class SpringConfig {
+
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository());
+    }
+
+    @Bean
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+}
+```
+* 상황에 따라 클래스를 변경할 때 사용
+* (+) XML로 설정하는 방법도 있지만 최근에는 잘 사용하지 않음
