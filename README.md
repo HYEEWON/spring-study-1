@@ -8,11 +8,11 @@
 ## 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
 ```
 * Java 11
-* [Spring boot](https://start.spring.io)
+* Spring boot
 * Thymeleaf
 ```
-* hello-spring
-### Spring Boot Basis
+* 코드: `hello-spring`
+### [Spring Boot](https://start.spring.io) Basis
 #### 정적 컨텐츠
 1. 웹 브라우저 요청(http://~//test.html)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
 2. 스프링에서 요청(test)과 관련된 컨트롤러 탐색
