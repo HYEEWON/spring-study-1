@@ -99,7 +99,7 @@
   }
   ```
     * public에 노출되어 중간에 문제가 될 가능성이 있음
-  * 생서자 주입: `권장`
+  * 생성자 주입: `권장`
   ```java
   @Controller
   public class MemberController {
