@@ -144,3 +144,13 @@ public class SpringConfig {
 ```
 * 상황에 따라 클래스를 변경할 때 사용
 * (+) XML로 설정하는 방법도 있지만 최근에는 잘 사용하지 않음
+
+### 웹 MVC 개발 - 회원 관리 예제
+* 회원 등록, 조회 기능 개발
+
+### 스프링 DB 접근 기술
+* [H2](https://www.h2database.com) DB 사용
+* `DataSource` 객체는 DB 커넥션을 획득할 때, 사용
+* 기존 메모리 저장 -> DB 저장으로 변경
+  * 기존 코드는 변경하지 않고 `config` 파일만 변경하면 됨
+  * 개방-폐쇄 원칙(OCP, Open-Closed Principle): 확장에는 열려있고, 수정(변경)에는 닫혀있다.
