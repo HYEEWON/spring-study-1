@@ -154,3 +154,30 @@ public class SpringConfig {
 * 기존 메모리 저장 -> DB 저장으로 변경
   * 기존 코드는 변경하지 않고 `config` 파일만 변경하면 됨
   * 개방-폐쇄 원칙(OCP, Open-Closed Principle): 확장에는 열려있고, 수정(변경)에는 닫혀있다.
+
+  #### 스프링 통합 테스트
+  * `@SpringBootTest`: 스프리 컨테이너와 테스트 실행
+  * `@Transactional`: 테스트 시작 전에 트랜잭션 수행, 테스트 이후에 롤백 -> DB에 데이터가 남지 안하 다음 테스트에 영향을 주지 않음
+
+  #### 스프링 JdbcTemplate
+  ##### JdbcTemplate
+  * SQL 연산을 제고하는 JDBC 코드용 기본 템플릿
+  * 순수 Jdbc와 동일한 환경설정
+  * 반복 코드는 대부분 제거 해줌, SQL은 직접 작성 필요
+  ```java
+  public class Main {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public Main(DataSource dataSource) { //생성자의 파라미터로 DataSource 사용
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+  ```
+  ##### RowMapper 인터페이스
+  * 원하는 형태의 결과값 반환 가능
+  * mapRow 메소드
+  ```java
+  Ins mapRow(ResultSet rs, int count);
+  ```
+    * ResultSet에 값을 담아 특정 객체(Ins)에 저장을 count만큼 반복
