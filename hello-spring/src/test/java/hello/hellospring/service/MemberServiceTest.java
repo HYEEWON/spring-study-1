@@ -33,8 +33,8 @@ class MemberServiceTest {
         //when: 실행했을때
         Long saveId = memberService.join(member);
         //then: 어떤 결과가 나옴
-        Member findMember = memberService.findOne(saveId).get();
-        assertThat(member.getName()).isEqualTo(findMember.getName());
+        Member findMember = memberRepository.findById(saveId).get();
+        assertEquals(member.getName(), findMember.getName());
     }
 
     @Test
