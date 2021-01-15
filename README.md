@@ -13,7 +13,7 @@
   * Aspect Oriented Programming(AOP, 관점 지향 프로그래밍)
 * Spring Boot를 이용한 RESTful Web Services 개발
 
-## Spring 과 Spring Boot
+## Spring과 Spring Boot
 ### Spring
 * 자바 프레임워크
 * 특징
