@@ -4,6 +4,7 @@
 * [Web Service & Web Application](#web-service-web-application)
 * [Spring Boot로 개발하는 RESTful Service](#spring-boot로-개발하는-restful-service)
 * [User Service API 구현](#user-service-api-구현)
+* [RESTful Service 기능 확장](#restful-service-기능-확장)
 
 ## Web Service & Web Application
 ### 마이크로 서비스 아키텍처
@@ -110,3 +111,69 @@ public class Main {
         return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR); // 500
     }
 ```
+
+## RESTful Service 기능 확장
+### 유효성 체크를 위한 Validation API 사용
+* `도메인` 클래스에서 데이터의 유효 범위 지정
+  * 예시: `@Size`, `@Past`
+* 컨트롤러의 함수의 전달인자에 `@Valid` 사용
+### 다국어 처리를 위한 Internationalization 구현
+* resource 폴더의 application.yml 수정
+```
+spring:
+  messages:
+    basename: messages // 기본 폴더명: messages
+```
+### Response 데이터 형식 변환
+* 요청의 헤더: Key='Accept' Value=`application/xml`, `application/json`
+  * XML로 데이터를 반환하기 위해 `pom.xml`에 의존성 추가
+  ```
+  <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+  	  <artifactId>jackson-dataformat-xml</artifactId>
+	  <version>2.10.2</version>
+  </dependency>
+  ```
+### Filtering
+* Annotation 사용
+  * 도메인 클래스에 `@JsonIgnoreProperties(value={"password", "ssn"})` 적용 -> 전달하는 데이터 중, value에 해당하는 것은 전달X
+  * 도메인 클래스의 변수에 `@JsonIgnore` 적용 -> 해당 변수가 전달X 
+* `@JsonFilter("filterName")`와 `FilterProvider`사용
+  * 도메인 클래스에  `@JsonFilter("filterName")` 적용
+  * Controller에서 필터를 추가 (이 작업을 하지 않으면 에러 발생)
+  ```java
+  SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
+                .filterOutAllExcept("id", "name", "joinDate", "password"); // 표현할 속성
+  
+  // 필터를 적용할 빈을 지정
+  FilterProvider filters = new SimpleFilterProvider().addFilter("filterName", filter);
+  MappingJacksonValue mapping = new MappingJacksonValue(users);
+  mapping.setFilters(filters
+  return mapping;
+  ```
+  * `SimpleBeanPropertyFilter.filterOutAllExcept`: 지정된 필드들만 JSON 변환
+  * `SimpleBeanPropertyFilter.serializeAllExcept`: 지정되지 않은 필드들만 JSON 변환 -> 추후에 필드가 추가되면 오류가 발생할 수 있어 추천X
+### REST API 버전 관리
+* 의미: 사용자에게 보여지는 항목 제어, REST 및 앱의 변화에 따라 버전 관리 필요
+* 주의 사항: URI Pollution, Caching, API Documentation, Misuse of HTTP Headers, 브라우저에서 실행 가능 여부
+* 종류
+  * URI Versioning: 일반 브라우저에서 실행 가능
+  ```java
+  @GetMapping("/v1/users/{id}")
+  ```
+  * Request Parameter Versioning: 일반 브라우저에서 실행 가능
+  ```java
+  @GetMapping(value="/users/{id}/", params="version=1") 
+  //http://localhost:8088/admin/users/?version=1
+  ```
+  * Media Type Versioning(Content Negotiation, Accept Header): 일반 브라우저에서 실행 불가
+  ```java
+  @GetMapping(value = "/users/{id}", headers = "API-VERSION=1")
+  // 요청 헤더: API-VERSION=1 // 키=값
+  ```
+  * Header Versioning: 일반 브라우저에서 실행 가능
+  ```java
+  @GetMapping(value = "/users/{id}/", produces = "application/vnd.company.appv1+json")
+  // 요청 헤더: Accept=application/vnd.company.appv1+json // 키=값
+  ```
+
