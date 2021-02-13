@@ -31,7 +31,7 @@ public class AdminUserController {
         List<User> users = service.findAll();
 
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter // 전체 사용자 filtering
-                .filterOutAllExcept("id", "name", "joinDate", "ssn"); // 표현할 속성
+                .filterOutAllExcept("id", "name", "joinDate", "password"); // 표현할 속성
 
         // 필터를 적용할 빈을 지정
         FilterProvider filters = new SimpleFilterProvider().addFilter("UserInfo", filter);
