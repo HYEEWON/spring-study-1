@@ -5,6 +5,7 @@
 * [Spring Boot로 개발하는 RESTful Service](#spring-boot로-개발하는-restful-service)
 * [User Service API 구현](#user-service-api-구현)
 * [RESTful Service 기능 확장](#restful-service-기능-확장)
+* [Spring Boot API 사용](#spring-boot-api-사용)
 
 ## Web Service & Web Application
 ### 마이크로 서비스 아키텍처
@@ -177,3 +178,31 @@ spring:
   // 요청 헤더: Accept=application/vnd.company.appv1+json // 키=값
   ```
 
+## Spring Boot API 사용
+### Hypermedia As The Engine Of Application state(HATEOAS)
+* 현재 리소스와 연관된(호출 가능한) `자원 상태 정보`를 제공
+* 상태를 전이할 수 있는 메커니즘 제공 -> `링크들에 대한 레퍼런스`를 서버 측에서 전송 -> 실제 링크없이 상태 전이 가능
+  * `상태 전이`: 어떤 페이지에서 `링크`를 통해 다른 페이지로 가는 것
+* 사용자는 여러 정보를 동시에 얻을 수 있다는 장점이 있음
+* 의존성 추가
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-hateoas</artifactId>
+</dependency>
+```
+* 예시 코드
+```java
+EntityModel<User> entityModel = new EntityModel<>(user);
+WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+entityModel.add(linkTo.withRel("all-users"));
+return entityModel;
+```
+* 실행 결과
+```
+"_links": {
+       "all-users": {
+           "href": "http://localhost:8088/users"
+       }
+   }
+```
