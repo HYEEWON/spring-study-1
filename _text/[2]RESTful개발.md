@@ -172,7 +172,7 @@ spring:
   @GetMapping(value = "/users/{id}", headers = "API-VERSION=1")
   // 요청 헤더: API-VERSION=1 // 키=값
   ```
-  * Header Versioning: 일반 브라우저에서 실행 가능
+  * Header Versioning: 일반 브라우저에서 실행 불가
   ```java
   @GetMapping(value = "/users/{id}/", produces = "application/vnd.company.appv1+json")
   // 요청 헤더: Accept=application/vnd.company.appv1+json // 키=값
