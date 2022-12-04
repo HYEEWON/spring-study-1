@@ -1,4 +1,5 @@
 # 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
+
 ```
 * Java 11
 * Spring boot
@@ -6,7 +7,9 @@
 * H2
 ```
 
-## Table of Contents
+<br>
+
+## 목차
 * [Spring Boot Basis](#spring-boot-basis)
   * 정적 컨텐츠
   * MVC와 템플릿 엔진
@@ -26,7 +29,9 @@
   * JPA
   * 스프링 데이터 JPA
 * [Aspect Oriented Programming(AOP, 관점 지향 프로그래밍)](#aspect-oriented-programmingaop-관점-지향-프로그래밍)
-  
+
+<br>
+
 ## Spring Boot Basis
 ### 정적 컨텐츠
 1. 웹 브라우저 요청(http://~//test.html)이 들어오면 스프링 부트의 내장 톰켓 서버가 요청을 받음 
@@ -51,22 +56,26 @@
   4. 객체는 JSON, 문자(열)는 문자(열)로 변환하여 웹 브라우저에 반환
   * 클라이언트의 HTTP Accept 헤더와 서버의 컨트롤러의 반환 타입 정보를 조햅해 `HttpMessageConverter`가 선택됨
 
+<br>
+
 ## 회원 관리 예제 - 백앤드 개발
-  * 일반적인 웹 애플리케이션 계층 구조<br>
-    ```
-    컨트롤러 -> 서비스 -> 리포지토리 -> DB
-           └>  └> 도메인 <┘
-    ```
-    * 컨트롤러: 웹 MVC의 컨트롤러
-    * 서비스: 핵심 비지니스 로직
-    * 리포지토리: 도메인 객체를 DB에 저장하고 관리
-    * 도메인: 비지니스 도메인 객체, ex) 회원, 주문, 쿠폰 등 DB에 저장되고 관리됨
-  * 테스트 케이스 작성
-    * `@Test`: 테스트를 위한 함수 작성
-    * 하나의 클래스에 테스트 함수가 여러 개인 경우, 테스트 함수의 실행 순서는 랜덤
-    * 순서의 의존성이 없도록 테스트가 끝날 때마다 데이터 클리어 필요 -> `@AfterEach`
-    * 테스트 코드와 실제 코드에서 각각 객체 생성시 서로 다른 객체를 사용 -> `@BeforeEach`에서 `Dependency Injection(DI)`
-  * 코드에서 `domain, repository, service, test`
+* 일반적인 웹 애플리케이션 계층 구조<br>
+  ```
+  컨트롤러 -> 서비스 -> 리포지토리 -> DB
+         └>  └> 도메인 <┘
+  ```
+  * 컨트롤러: 웹 MVC의 컨트롤러
+  * 서비스: 핵심 비지니스 로직
+  * 리포지토리: 도메인 객체를 DB에 저장하고 관리
+  * 도메인: 비지니스 도메인 객체, ex) 회원, 주문, 쿠폰 등 DB에 저장되고 관리됨
+* 테스트 케이스 작성
+  * `@Test`: 테스트를 위한 함수 작성
+  * 하나의 클래스에 테스트 함수가 여러 개인 경우, 테스트 함수의 실행 순서는 랜덤
+  * 순서의 의존성이 없도록 테스트가 끝날 때마다 데이터 클리어 필요 -> `@AfterEach`
+  * 테스트 코드와 실제 코드에서 각각 객체 생성시 서로 다른 객체를 사용 -> `@BeforeEach`에서 `Dependency Injection(DI)`
+* 코드에서 `domain, repository, service, test`
+
+<br>
 
 ## 스프링 빈과 의존관계
 ### Dependency Injection(DI, 의존성 주입)
@@ -161,8 +170,12 @@ public class SpringConfig {
 * 상황에 따라 클래스를 변경할 때 사용
 * (+) XML로 설정하는 방법도 있지만 최근에는 잘 사용하지 않음
 
+<br>
+
 ## 웹 MVC 개발 - 회원 관리 예제
 * 회원 등록, 조회 기능 개발
+
+<br>
 
 ## 스프링 DB 접근 기술
 * [H2](https://www.h2database.com) DB 사용
@@ -203,6 +216,8 @@ Ins mapRow(ResultSet rs, int count);
 ### 스프링 데이터 JPA
 * 구현 클래스 없이 `인터페이스`만으로도 개발 가능
 * `CRUD`를 스프링 데이터 JPA에서 제공
+
+<br>
 
 ## Aspect Oriented Programming(AOP, 관점 지향 프로그래밍)
 * 공통 관심 사항(Cross-Cutting Concern)과 핵심 관심 사항(Core Concern)을 분리
